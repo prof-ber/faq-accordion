@@ -27,6 +27,10 @@
       }
       body {
         background-color: hsl(275, 100%, 97%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
       #fundo {
         position: absolute;
@@ -44,58 +48,131 @@
         padding: 1rem;
         background-color: white;
         border-radius: 10px;
-        margin-top: 25%;
+        margin-top: 20%;
         font-family: "Work Sans";
+        box-shadow: 1px 1px 2px 0px #ccc;
+        max-width: 450px;
       }
       #caixinha h1 {
         font-weight: 700;
         color: hsl(292, 42%, 14%);
       }
       #caixinha h2 {
+        font-size: 1rem;
         font-weight: 600;
         color: hsl(292, 42%, 14%);
+        margin-bottom: 1.4rem;
+        margin-top: 1.4rem;
       }
       #caixinha div {
+        font-size: 0.75rem;
         font-weight: 400;
         color: hsl(292, 16%, 49%);
+      }
+      #caixinha h2 {
+        transition: color 0.3s ease;
+      }
+      #caixinha h2:hover {
+        color: hsl(292, 16%, 49%);
+      }
+      #star {
+        width: auto;
+        height: 1.5rem;
+      }
+      .accordion-flex {
+        display: flex;
+        cursor: pointer;
+      }
+      .sign {
+        margin-left: auto;
+        height: auto;
+        width: 1.5rem;
+      }
+      .accordion-content {
+        display: none;
+      }
+      .open {
+        display: block;
+      }
+      @media screen and (min-width: 769px) {
+        #caixinha {
+          margin-top: 10%;
+        }
       }
     </style>
   </head>
   <body>
+    <script>
+      function toggleAccordion(accordionItem) {
+        //Armazenar na memória o elemento que queremos mostrar ou esconder
+        const content = accordionItem.querySelector(".accordion-content");
+        //Armazenar na memória o elemento que contém o ícone de adição ou subtração
+        const image = accordionItem.querySelector(".sign");
+        //Verificar se o conteúdo está visível ou não
+        const isContentVisible =
+          window.getComputedStyle(content).display !== "none";
+        //Se o conteúdo não estiver visível...
+        if (!isContentVisible) {
+          //Eu deixo ele visível...
+          content.style.display = "block";
+          //E troco a imagem para o sinal de menos
+          image.src = "assets/images/icon-minus.svg";
+        } else {
+          //Eu escondo ele...
+          content.style.display = "none";
+          //E troco a imagem para o sinal de mais
+          image.src = "assets/images/icon-plus.svg";
+        }
+      }
+    </script>
     <div id="fundo"></div>
     <div id="caixinha">
-      <h1>FAQs</h1>
+      <h1>
+        <img id="star" src="assets/images/icon-star.svg" alt="Estrela" /> FAQs
+      </h1>
       <div class="accordion">
-        <div class="accordion-item">
-          <h2 class="accordion-title">What is Frontend Mentor?</h2>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <div class="accordion-flex">
+            <h2 class="accordion-title">What is Frontend Mentor?</h2>
+            <img class="sign" src="assets/images/icon-plus.svg" />
+          </div>
           <div class="accordion-content">
             Frontend Mentor is a platform that helps developers improve their
             frontend skills by providing realistic coding challenges. It's
             suitable for all levels and ideal for portfolio building.
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-title">Is Frontend Mentor free?</h2>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <div class="accordion-flex">
+            <h2 class="accordion-title">Is Frontend Mentor free?</h2>
+            <img class="sign" src="assets/images/icon-plus.svg" />
+          </div>
           <div class="accordion-content">
             Yes, Frontend Mentor offers both free and premium coding challenges,
             with the free option providing access to a range of projects
             suitable for all skill levels.
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-title">
-            Can I use Frontend Mentor projects in my portfolio?
-          </h2>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <div class="accordion-flex">
+            <h2 class="accordion-title">
+              Can I use Frontend Mentor projects in my portfolio?
+            </h2>
+            <img class="sign" src="assets/images/icon-plus.svg" />
+          </div>
           <div class="accordion-content">
             Yes, you can use projects completed on Frontend Mentor in your
             portfolio. It's an excellent way to showcase your skills to
             potential employers!
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-title">
-            How can I get help if I'm stuck on a Frontend Mentor challenge?
-          </h2>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <div class="accordion-flex">
+            <h2 class="accordion-title">
+              How can I get help if I'm stuck on a Frontend Mentor challenge?
+            </h2>
+            <img class="sign" src="assets/images/icon-plus.svg" />
+          </div>
           <div class="accordion-content">
             The best place to get help is inside Frontend Mentor's Discord
             community. There's a help channel where you can ask questions and
